@@ -4,7 +4,7 @@ Summary: CFEngine Build Automation -- openssl
 Name: cfbuild-openssl
 Version: %{version}
 Release: 1
-Source0: openssl-OpenSSL_%{openssl_version}.tar.gz
+Source0: openssl-%{openssl_version}.tar.gz
 License: MIT
 Group: Other
 Url: http://example.com/
