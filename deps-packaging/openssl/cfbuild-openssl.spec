@@ -118,7 +118,9 @@ CFEngine Build Automation -- openssl -- development files
 %{prefix}/bin/openssl
 
 %dir %{prefix}/lib
+%{prefix}/lib/libssl.so
 %{prefix}/lib/libssl.so.1.1
+%{prefix}/lib/libcrypto.so
 %{prefix}/lib/libcrypto.so.1.1
 %{prefix}/ssl/openssl.cnf
 %{prefix}/ssl/ct_log_list.cnf
@@ -130,6 +132,8 @@ CFEngine Build Automation -- openssl -- development files
 %{prefix}/include
 
 %dir %{prefix}/lib
+%{prefix}/lib/libssl.so
+%{prefix}/lib/libcrypto.so
 
 %{prefix}/lib/pkgconfig
 
