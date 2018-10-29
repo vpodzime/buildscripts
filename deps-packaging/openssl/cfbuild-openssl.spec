@@ -98,11 +98,11 @@ rm -rf ${RPM_BUILD_ROOT}%{prefix}/ssl/openssl.cnf.dist
 rm -rf ${RPM_BUILD_ROOT}%{prefix}/ssl/misc/tsget.pl
 
 if [ ! -f ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.so ]; then
-    ln -s ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.so.1.1 ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.so;
+    ln -s libcrypto.so.1.1 ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.so
 fi
 
 if [ ! -f ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.so ]; then
-    ln -s ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.so.1.1 ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.so;
+    ln -s libssl.so.1.1 ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.so
 fi
 
 %clean
