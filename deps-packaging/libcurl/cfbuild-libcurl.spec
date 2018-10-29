@@ -5,6 +5,7 @@ Name: cfbuild-libcurl
 Version: %{version}
 Release: 1
 Source: curl-%{curl_version}.tar.gz
+Patch0: no_runtime_libs_deps.patch
 License: MIT
 Group: Other
 Url: http://example.com/
@@ -17,6 +18,11 @@ AutoReqProv: no
 %prep
 mkdir -p %{_builddir}
 %setup -q -n curl-%{curl_version}
+
+%patch0 -p1
+
+# need to re-create ./configure because we patched configure.ac
+autoconf
 
 ./configure \
     --with-sysroot=%{prefix} \
