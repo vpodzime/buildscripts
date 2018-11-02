@@ -89,8 +89,12 @@ $MAKE DESTDIR=${RPM_BUILD_ROOT} install_ssldirs
 
 rm -f ${RPM_BUILD_ROOT}%{prefix}/bin/c_rehash
 
-rm -rf ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.a
-rm -rf ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.a
+SYS=`uname -s`
+if [ $SYS != "AIX" ]; then
+  # we need to keep these files in place on AIX, they are devel files of the libraries
+  rm -rf ${RPM_BUILD_ROOT}%{prefix}/lib/libssl.a
+  rm -rf ${RPM_BUILD_ROOT}%{prefix}/lib/libcrypto.a
+fi
 rm -rf ${RPM_BUILD_ROOT}%{prefix}/lib/pkgconfig/openssl.pc
 rm -rf ${RPM_BUILD_ROOT}%{prefix}/ssl/misc/CA.pl
 rm -rf ${RPM_BUILD_ROOT}%{prefix}/ssl/misc/tsget
@@ -117,9 +121,7 @@ CFEngine Build Automation -- openssl -- development files
 %{prefix}/bin/openssl
 
 %dir %{prefix}/lib
-%{prefix}/lib/libssl.so
 %{prefix}/lib/libssl.so.1.1
-%{prefix}/lib/libcrypto.so
 %{prefix}/lib/libcrypto.so.1.1
 %{prefix}/ssl/openssl.cnf
 
@@ -129,8 +131,13 @@ CFEngine Build Automation -- openssl -- development files
 %{prefix}/include
 
 %dir %{prefix}/lib
+%ifos aix
+%{prefix}/lib/libssl.a
+%{prefix}/lib/libcrypto.a
+%else
 %{prefix}/lib/libssl.so
 %{prefix}/lib/libcrypto.so
+%endif
 
 %{prefix}/lib/pkgconfig
 
